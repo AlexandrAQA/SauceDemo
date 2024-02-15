@@ -4,13 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ProductsPage {
-
-    WebDriver driver;
+public class ProductsPage extends BasePage {
     private final By TITLE = By.xpath(".//span[@class='title']");
 
     public ProductsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public WebElement getTitle() {
