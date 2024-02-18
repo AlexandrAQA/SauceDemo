@@ -15,4 +15,7 @@ public class ProductsPage extends BasePage {
         return driver.findElement(TITLE);
     }
 
+    public void open() {
+        driver.get(BASE_URL + "inventory.html");
+    }
 }
