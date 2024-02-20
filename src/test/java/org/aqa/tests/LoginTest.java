@@ -65,7 +65,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.login("          ", "              ");
         assertEquals(loginPage.getErrorIfCredentialsIncorrect(),
-                "Epic sadface: Sorry, this user has been locked out.",
+                "Epic sadface: Username and password do not match any user in this service",
                 "The error message is incorrect or changed");
     }
 }
