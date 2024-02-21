@@ -1,5 +1,6 @@
 package org.aqa.tests;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,6 +23,7 @@ public class ProductsTest extends BaseTest {
         cartPage.removeProductFromCart(SAUCE_LABS_ONESIE);
         final List<WebElement> allProductsItemInCartAfterRemove = cartPage.getAllProductsItemInCart();
 
+        CollectionUtils.size(allProductsItemInCartAfterRemove);
         Assert.assertEquals(allProductsItemInCartAfterRemove.size(), 1,
                 "Only one product should be in the cart after removing product");
         Assert.assertEquals(allProductsItemInCartAfterRemove.get(0).getText(), SAUCE_LABS_BOLT_T_SHIRT,
