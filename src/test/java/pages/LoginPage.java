@@ -2,15 +2,24 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
-    private final By USER_NAME = By.id("user-name");
-    private final By PASSWORD = By.id("password");
-    private final By LOGIN_BUTTON = By.id("login-button");
-    private final By ERROR_IF_CREDENTIALS_INCORRECT = By.xpath(".//h3[@data-test ='error']");
+
+    @FindBy(id = "user-name")
+    private WebElement USER_NAME;
+    @FindBy(id = "password")
+    private WebElement PASSWORD;
+    @FindBy(id = "login-button")
+    private WebElement LOGIN_BUTTON;
+    @FindBy(css = "h3[data-test =error]")
+    private WebElement ERROR_IF_CREDENTIALS_INCORRECT;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public void open() {
@@ -18,9 +27,9 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String userName, String password) {
-        driver.findElement(USER_NAME).sendKeys(userName);
-        driver.findElement(PASSWORD).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).submit();
+        USER_NAME.sendKeys(userName);
+        PASSWORD.sendKeys(password);
+        LOGIN_BUTTON.submit();
     }
 
     public void loginAsValidUser() {
@@ -28,7 +37,6 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorIfCredentialsIncorrect() {
-        return driver.findElement(ERROR_IF_CREDENTIALS_INCORRECT).getText();
+        return ERROR_IF_CREDENTIALS_INCORRECT.getText();
     }
-
 }
