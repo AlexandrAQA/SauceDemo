@@ -3,18 +3,24 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
     @FindBy(id = "user-name")
+    @CacheLookup
     private WebElement USER_NAME;
     @FindBy(id = "password")
+    @CacheLookup
     private WebElement PASSWORD;
     @FindBy(id = "login-button")
+    @CacheLookup
     private WebElement LOGIN_BUTTON;
     @FindBy(css = "h3[data-test =error]")
+    @CacheLookup
     private WebElement ERROR_IF_CREDENTIALS_INCORRECT;
 
     public LoginPage(WebDriver driver) {
@@ -24,6 +30,7 @@ public class LoginPage extends BasePage {
 
     public void open() {
         driver.get(BASE_URL);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
     }
 
     public void login(String userName, String password) {
