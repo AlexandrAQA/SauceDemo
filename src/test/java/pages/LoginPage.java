@@ -7,6 +7,10 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -31,6 +35,10 @@ public class LoginPage extends BasePage {
     public void open() {
         driver.get(BASE_URL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
+        Wait<WebDriver> fluent = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(Exception.class);
     }
 
     public void login(String userName, String password) {
